@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirect Page</title>
+</head>
+
+<body>
+    <p>If you are not redirected automatically, follow this <a id="redirect" href="./html/">link</a>.</p>
+    <script type="text/javascript">
+        const url = "/html";
+        document.getElementById("redirect").href = url;
+        function redirect() {
+            window.location.pathname = url;
+        }
+        window.onload = redirect;
+    </script>
+</body>
+
+</html>
