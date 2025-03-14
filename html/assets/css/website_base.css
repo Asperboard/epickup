@@ -1,0 +1,41 @@
+/*
+** EPITECH PROJECT, 2024
+** epickup
+** File description:
+** website_base.css
+*/
+
+.title_header {
+    display: flex;
+    align-items: center;
+}
+
+.header_image {
+    width: 50px;
+    /* Adjust size as needed */
+    height: 50px;
+    /* Adjust size as needed */
+    margin-right: 10px;
+}
+
+.header_text {
+    display: flex;
+    flex-direction: column;
+}
+
+.header_line1,
+.header_line2 {
+    margin: 0;
+}
+
+.header_background {
+    background-color: #709eac;
+}
+
+.header-contacts {
+    color: black;
+}
+
+.footer_background {
+    background-color: #949191;
+}

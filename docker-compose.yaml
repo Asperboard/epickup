@@ -1,10 +1,10 @@
 services:
-  frontend:
+  epickup:
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ./html
+      dockerfile: ../Dockerfile
     ports:
-      - "80:80"
+      - "81:80"
     volumes:
       - ./html/:/usr/local/apache2/htdocs/
-    container_name: frontend_website
+    container_name: epickup_website

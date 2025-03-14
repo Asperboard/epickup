@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirect Page</title>
+    <title>AspergerBoard - Home</title>
+    <link rel="icon" type="image/png" sizes="1270x1221" href="assets/favicon/AB-logo.png">
+    <link rel="icon" type="image/png" sizes="1270x1221" href="assets/favicon/AB-logo.png" media="(prefers-color-scheme: dark)">
+    <link rel="stylesheet" type="text/css" href="assets/css/website_base.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/home.css">
 </head>
 
 <body>
-    <p>If you are not redirected automatically, follow this <a id="redirect" href="https://asperboard-v1.pingpal.news/html/">link</a>.</p>
-    <script type="text/javascript">
-        const url = "https://asperboard-v1.pingpal.news/html";
-        document.getElementById("redirect").href = url;
-        function redirect() {
-            //window.location.pathname = url;
-            window.location.href = url;
-        }
-        window.onload = redirect;
-    </script>
+    <header></header>
+    <main></main>
+    <footer></footer>
+    <script type="text/JavaScript" src="assets/js/constants.js"></script>
+    <script type="text/JavaScript" src="assets/js/header/title_header.js"></script>
+    <script type="text/JavaScript" src="assets/js/header/header_menu.js"></script>
+    <script type="text/JavaScript" src="assets/js/header/black_header_strip.js"></script>
+    <script type="text/JavaScript" src="assets/js/footer/footer_menu.js"></script>
+    <script type="text/JavaScript" src="assets/js/menu/menu_options.js"></script>
+    <script type="text/JavaScript" src="assets/js/header.js"></script>
+    <script type="text/JavaScript" src="assets/js/footer.js"></script>
 </body>
 
 </html>
