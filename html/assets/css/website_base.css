@@ -28,7 +28,10 @@
 }
 
 .header-contacts {
-  color: black;
+  background-color: black;
+  display: flex;
+  color: white;
+  justify-content: space-between;
 }
 
 .footer_background {
