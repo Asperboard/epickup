@@ -12,7 +12,7 @@ A "dump" mode (where all the levels a layed out alphabetically so that the user 
 ## The parents
 
 This section is composed (for the moment) of sections:
-Section 1: guide du parcours du patient (see quote from Aurélie de saint thibault, slide: 6)
+Section 1: guide du parcours du patient (see quote from Aurélie de saint Thibault, slide: 6)
 Section 2: billing (this is where the user can manage their subscription and update their details)
 
 ## The about
@@ -21,7 +21,7 @@ This is the page where we talk about:
 
 * us
 * Why we created this website
-*
+<!-- * -->
 
 ## The pricing
 
