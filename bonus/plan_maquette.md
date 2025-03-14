@@ -19,8 +19,27 @@ Section 2: billing (this is where the user can manage their subscription and upd
 
 This is the page where we talk about:
 
-* us
-* Why we created this website
+* us : 
+* What is the Asperger syndrom ?
+
+    Autism Spectrum Disorder (ASD):
+    A set of neurobiological disorders that affect the development of individuals referred to as "autistic."
+
+    Autism:
+    Disorders affecting communication, obsessive interests or activities, repetitive behaviors, and a strong resistance to change.
+
+* Why did we create Asperboard ?
+
+    As a parent of a person with an ASD, it is difficult to find resources to address the challenges related to autism for several reasons:
+
+    * Geographical inequalities: Large cities have more specialized facilities, whereas rural areas are often underserved.
+    * Shortage of trained professionals: The number of doctors, psychologists, and speech therapists specializing in autism remains insufficient to meet demand.
+    * Difficulty accessing care and support: Even after a diagnosis, families struggle to find places in specialized facilities (CAMSP, SESSAD, IME, etc.), and private care is often expensive.
+
+Legal point :
+* RGPD
+* confidentiality policy
+* consent policy
 <!-- * -->
 
 ## The pricing
