@@ -1,10 +1,24 @@
 services:
-  epickup:
+  # epickup-html:
+  #   build:
+  #     context: ./html
+  #     dockerfile: ../dockerfile.html
+  #   restart: on-failure
+  #   tty: true
+  #   ports:
+  #     - "81:80"
+  #   volumes:
+  #     - ./html/:/usr/local/apache2/htdocs/
+  #   container_name: epickup_html
+
+  epickup-react: 
     build:
-      context: ./html
-      dockerfile: ../Dockerfile
+      context: ./react/epickup
+      dockerfile: ../../dockerfile.react
+    restart: on-failure
+    tty: true
     ports:
-      - "81:80"
+      - "3000:3000"
     volumes:
-      - ./html/:/usr/local/apache2/htdocs/
-    container_name: epickup_website
+      - ./react/epickup:/app
+    container_name: epickup_react

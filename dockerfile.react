@@ -1,0 +1,49 @@
+##
+## EPITECH PROJECT, 2024
+## epickup
+## File description:
+## dockerfile.react
+##
+
+FROM node:23-alpine3.20
+
+# Update the list of packages
+RUN apk update && apk add bash
+
+# Make sure npm is installed
+RUN if [ -f /usr/bin/npm ]; then apk add npm; fi; npm install -g npm;
+
+# Create a shortcut for the npm binary
+RUN ln -s /usr/local/bin/npm /bin/npm
+
+# Create the app directory
+WORKDIR /app
+
+# Copy the package.json and package-lock.json (failsafe method)
+COPY package.json .
+COPY package-lock.json .
+
+# Check if the required file is present
+RUN if [ ! -f package.json ]; then echo "package.json not found"; exit 1; fi
+
+# Copy the rest of the files
+COPY . .
+
+# Install the dependencies
+RUN npm install
+
+# Build the app
+RUN npm run build
+
+# Expose the port
+EXPOSE 3000
+
+# Update the entrypoint
+# ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT [ "/bin/bash" ]
+
+# Start the app
+# CMD ["-c", "/bin/ls -la"]
+# CMD ["-c", "/bin/echo \$PATH", ";", "npm run build && npm run start"]
+# CMD ["-c", "while true; do echo 'Starting the app'; sleep 1; done"]
+CMD ["-c", "echo booting up; cd /app; echo 'Path: $(pwd)'; npm install && npm run build && npm run start"]
