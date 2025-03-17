@@ -37,3 +37,8 @@ Please read the [CONVENTION.md](./CONVENTION.md) for details on our commit conve
 ## Contributing
 
 Please read the [CONTRIBUTING.md](./CONTRIBUTING.md) for details on how to contribute to this project.
+
+## Versions
+
+* nodejs: v23.10.0
+* npm: 10.9.2
