@@ -13,12 +13,12 @@ services:
 
   epickup-react: 
     build:
-      context: ./react/epickup
+      context: ./react
       dockerfile: ../../dockerfile.react
     restart: on-failure
     tty: true
     ports:
       - "3000:3000"
     volumes:
-      - ./react/epickup:/app
+      - ./react:/app
     container_name: epickup_react
