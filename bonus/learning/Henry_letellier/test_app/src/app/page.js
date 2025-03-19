@@ -99,7 +99,7 @@ export default function Home() {
         </a>
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="http://localhost:3000/demo"
+          href="http://localhost:3000/quizz"//_options
           target=""
           rel="noopener noreferrer"
         >
@@ -110,7 +110,7 @@ export default function Home() {
             width={16}
             height={16}
           />
-          Go to demo →
+          Go to game list →
         </a>
       </footer>
     </div>

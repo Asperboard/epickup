@@ -15,44 +15,44 @@ import { useRouter } from 'next/navigation';
 function getQuizData() {
     return [
         {
-            title: "General Knowledge",
-            description: "Test your general knowledge",
+            title: "Culture générale",
+            description: "Testez votre culture générale",
             questions: [
                 {
-                    question: "What is the capital of France?",
-                    options: ["London", "Berlin", "Paris", "Madrid"],
+                    question: "Quelle est la capitale de la France ?",
+                    options: ["Londres", "Berlin", "Paris", "Madrid"],
                     correctAnswer: "Paris"
                 },
                 {
-                    question: "Which planet is known as the Red Planet?",
-                    options: ["Earth", "Mars", "Jupiter", "Venus"],
+                    question: "Quelle planète est connue sous le nom de planète rouge ?",
+                    options: ["Terre", "Mars", "Jupiter", "Vénus"],
                     correctAnswer: "Mars"
                 },
                 {
-                    question: "Who painted the Mona Lisa?",
-                    options: ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"],
-                    correctAnswer: "Leonardo da Vinci"
+                    question: "Qui a peint la Joconde ?",
+                    options: ["Vincent van Gogh", "Pablo Picasso", "Leonard de Vinci", "Michel-Ange"],
+                    correctAnswer: "Leonard de Vinci"
                 }
             ]
         },
         {
-            title: "Science Quiz",
-            description: "Test your science knowledge",
+            title: "Quiz Scientifique",
+            description: "Testez vos connaissances en science",
             questions: [
                 {
-                    question: "What is the chemical symbol for water?",
+                    question: "Quel est le symbole chimique de l'eau ?",
                     options: ["Wa", "H2O", "O2H", "HOH"],
                     correctAnswer: "H2O"
                 },
                 {
-                    question: "What is the largest organ in the human body?",
-                    options: ["Heart", "Liver", "Skin", "Lungs"],
-                    correctAnswer: "Skin"
+                    question: "Quel est le plus grand organe du corps humain ?",
+                    options: ["Cœur", "Foie", "Peau", "Poumons"],
+                    correctAnswer: "Peau"
                 },
                 {
-                    question: "What is the hardest natural substance on Earth?",
-                    options: ["Gold", "Iron", "Diamond", "Platinum"],
-                    correctAnswer: "Diamond"
+                    question: "Quelle est la substance naturelle la plus dure sur Terre ?",
+                    options: ["Or", "Fer", "Diamant", "Platine"],
+                    correctAnswer: "Diamant"
                 }
             ]
         }
