@@ -1,13 +1,15 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: Deploy React App to GitHub Pages
 
 on:
   # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+env:
+  REACT_DIRECTORY: 'react'
+  BUILD_DIRECTORY: 'build'
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -22,7 +24,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Single deploy job since we're just deploying
+  # Build and deploy job
   deploy:
     environment:
       name: github-pages
@@ -31,13 +33,35 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '23'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: cd ${{env.REACT_DIRECTORY}} && npm ci
+
+      - name: Configure Next.js for static export
+        run: |
+          # Create or ensure next.config.js has the correct settings
+          cd ${{env.REACT_DIRECTORY}} && echo "module.exports = { output: 'export', distDir: '${{env.BUILD_DIRECTORY}}', images: { unoptimized: true } };" > next.config.js
+      
+      - name: Build React app
+        run: cd ${{env.REACT_DIRECTORY}} && npm run build
+        env:
+          CI: false # This prevents the build from failing on warnings
+      
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          # Upload build output directory
+          path: './${{env.REACT_DIRECTORY}}/${{env.BUILD_DIRECTORY}}'
+      
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
