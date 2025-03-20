@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useDrag, useDrop } from 'react-dnd';
 
 const Shop = () => {
   const [inventory, setInventory] = useState([
@@ -11,6 +10,9 @@ const Shop = () => {
 
   const [avatarItems, setAvatarItems] = useState([]);
   const [coins, setCoins] = useState(1000);
+  const [draggedItem, setDraggedItem] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [shopItems, setShopItems] = useState([
     { id: 5, name: 'Top Hat', type: 'hat', price: 100, image: '/hat1.png' },
     { id: 6, name: 'Christmas Hat', type: 'hat', price: 200, image: '/hat2.png' },
@@ -18,6 +20,46 @@ const Shop = () => {
     { id: 8, name: 'Santa Hat', type: 'hat', price: 400, image: '/hat3.png' },
   ]);
 
+  const handleMouseMove = (e) => {
+    if (isDragging) {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    }
+  };
+
+  const handleMouseUp = (e) => {
+    if (draggedItem && isDragging) {
+      const avatarZone = document.getElementById('avatar-zone');
+  
+      if (!avatarZone) {
+        setDraggedItem(null);
+        setIsDragging(false);
+        return;
+      }
+  
+      const rect = avatarZone.getBoundingClientRect();
+  
+      // Calcul correct de la position relative à l'avatar-zone
+      const relativeX = e.clientX - rect.left;
+      const relativeY = e.clientY - rect.top;
+  
+      if (
+        relativeX >= 0 &&
+        relativeX <= rect.width &&
+        relativeY >= 0 &&
+        relativeY <= rect.height
+      ) {
+        setAvatarItems([
+          ...avatarItems,
+          { ...draggedItem, x: relativeX, y: relativeY }
+        ]);
+        setInventory(inventory.filter(item => item.id !== draggedItem.id));
+      }
+      
+      setDraggedItem(null);
+      setIsDragging(false);
+    }
+  };
+  
   const generateUniqueId = () => {
     return Math.floor(Math.random() * Date.now());
   };
@@ -33,43 +75,50 @@ const Shop = () => {
     }
   };
 
-  // Fonction pour déplacer l'objet entre l'inventaire et l'avatar
-  const moveItemToAvatar = (item) => {
-    setAvatarItems([...avatarItems, item]);
-    setInventory(inventory.filter(i => i.id !== item.id));
-  };
-
   const moveItemToInventory = (item) => {
     setInventory([...inventory, item]);
     setAvatarItems(avatarItems.filter(i => i.id !== item.id));
   };
 
   return (
-    <div className="relative w-full h-screen flex justify-center items-center bg-gray-100">
+    <div className="relative w-full h-screen flex justify-center items-center bg-gray-100"
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+    >
       {/* Zone de l'avatar */}
-      <div className="absolute w-1/2 h-1/2 border-4 border-blue-500 rounded-lg bg-transparent flex flex-col justify-center items-center">
-        <span className="text-blue-500 text-lg font-semibold">Zone de l'avatar</span>
+      <div id="avatar-zone" className="absolute w-1/2 h-1/2 border-4 border-blue-500 rounded-lg bg-transparent flex flex-col justify-center items-center p-4">
+        <div className="relative w-full h-full">
         {avatarItems.map(item => (
-          <DraggableItem
+          <img
             key={item.id}
-            item={item}
-            isAvatar={true}
-            moveItem={moveItemToInventory}
+            src={item.image}
+            alt={item.name}
+            className="absolute w-16 h-16 hover:bg-red-200 rounded-lg p-2 transition cursor-pointer"
+            style={{
+              left: `${item.x}px`,
+              top: `${item.y}px`,
+              transform: "translate(-50%, -50%)" // Centre correctement l'image
+            }}
+            onClick={() => moveItemToInventory(item)}
           />
         ))}
+      </div>
       </div>
 
       {/* Inventaire */}
       <div className="absolute bottom-0 w-[95%] h-1/4 border-4 border-green-500 rounded-lg bg-transparent p-4">
         <span className="text-blue-500 text-lg font-semibold">Inventaire</span>
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap mt-2">
           {inventory.map(item => (
-            <DraggableItem
-              key={item.id}
-              item={item}
-              isAvatar={false}
-              moveItem={moveItemToAvatar}
-            />
+              <img 
+                src={item.image}
+                alt={item.name}
+                className="m-2 w-16 h-16 cursor-pointer"
+                onMouseDown={(e) => {
+                  setDraggedItem(item);
+                  setIsDragging(true);
+                  setMousePosition({ x: e.clientX, y: e.clientY });
+                }} />
           ))}
         </div>
       </div>
@@ -90,26 +139,16 @@ const Shop = () => {
           </div>
         ))}
       </div>
-    </div>
-  );
-};
 
-const DraggableItem = ({ item, isAvatar, moveItem }) => {
-  const [, drag] = useDrag(() => ({
-    type: 'ITEM',
-    item: { id: item.id, name: item.name, type: item.type },
-  }));
-
-  const [, drop] = useDrop(() => ({
-    accept: 'ITEM',
-    drop: (draggedItem) => {
-      moveItem(draggedItem);
-    }
-  }));
-
-  return (
-    <div ref={(node) => drag(drop(node))} className="border-2 p-2 m-2">
-      <img src={item.image} alt={item.name} className="w-16 h-16" />
+      {/* Objet qui suit la souris */}
+      {draggedItem && (
+        <img
+          src={draggedItem.image}
+          alt={draggedItem.name}
+          className="absolute w-16 h-16 pointer-events-none"
+          style={{ left: `${mousePosition.x}px`, top: `${mousePosition.y}px`, transform: "translate(-50%, -50%)" }}
+        />
+      )}
     </div>
   );
 };
