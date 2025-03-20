@@ -110,7 +110,8 @@ const Shop = () => {
         <span className="text-blue-500 text-lg font-semibold">Inventaire</span>
         <div className="flex flex-wrap mt-2">
           {inventory.map(item => (
-              <img 
+              <img
+                key={item.id}
                 src={item.image}
                 alt={item.name}
                 className="m-2 w-16 h-16 cursor-pointer"

@@ -14,7 +14,7 @@ services:
   epickup-react: 
     build:
       context: ./react
-      dockerfile: ../../dockerfile.react
+      dockerfile: dockerfile.react
     restart: on-failure
     tty: true
     ports:
