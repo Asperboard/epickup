@@ -2,9 +2,13 @@
 
 import React from 'react';
 import { Tab, Container, Nav } from 'react-bootstrap';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import Home from './home'
 import Adolescents from './adolescents'
+import Avatar from './avatar'
+import Shop from './shop'
 
 export default function Main() {
   return (
@@ -27,6 +31,12 @@ export default function Main() {
               <Nav.Item>
                 <Nav.Link eventKey="adolescents" className="text-blue-700 hover:text-blue-900">adolescents</Nav.Link>
               </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="avatar" className="text-blue-700 hover:text-blue-900">avatar</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="shop" className="text-blue-700 hover:text-blue-900">shop</Nav.Link>
+              </Nav.Item>
               {/* <Nav.Item>
                 <Nav.Link eventKey="parents" className="text-blue-700 hover:text-blue-900">parents</Nav.Link>
               </Nav.Item>
@@ -43,6 +53,18 @@ export default function Main() {
               </Tab.Pane>
               <Tab.Pane eventKey="adolescents">
                 <Adolescents/>
+              </Tab.Pane>
+              <Tab.Pane eventKey="avatar">
+                {/* Envelopper Avatar avec DndProvider */}
+                <DndProvider backend={HTML5Backend}>
+                  <Avatar />
+                </DndProvider>
+              </Tab.Pane>
+              <Tab.Pane eventKey="shop">
+                {/* Envelopper Avatar avec DndProvider */}
+                <DndProvider backend={HTML5Backend}>
+                  <Shop />
+                </DndProvider>
               </Tab.Pane>
             </Tab.Content>
           </Tab.Container>
