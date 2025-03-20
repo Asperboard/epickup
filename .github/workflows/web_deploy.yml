@@ -37,8 +37,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '23'
           cache: 'npm'
+          node-version: '23'
+          cache-dependency-path: ${{env.REACT_DIRECTORY}}/package-lock.json
       
       - name: Install dependencies
         run: cd ${{env.REACT_DIRECTORY}} && npm ci
