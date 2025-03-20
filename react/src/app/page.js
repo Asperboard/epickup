@@ -1,15 +1,20 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Tab, Container, Nav } from 'react-bootstrap';
 
 import Home from './home'
 import Adolescents from './adolescents'
 
 export default function Main() {
+  const [points, setPoints] = useState(0);
+
+  const handlePointsEarned = (amount) => {
+    setPoints(points + amount);
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-white">
-      {/* Header */}
       <header className="p-4 bg-blue-50">
         <div>
           <div className="flex items-center space-x-2">
@@ -18,6 +23,7 @@ export default function Main() {
               <span className="text-xl font-semibold text-blue-800">AsperBoard</span>
               <span className="text-sm italic text-blue-600">Navigating in a neuro-typical maze</span>
             </div>
+            <div>{points}</div>
           </div>
           <Tab.Container id="left-tabs-example" defaultActiveKey="home">
             <Nav variant="pills">
@@ -42,7 +48,7 @@ export default function Main() {
                 <Home/>
               </Tab.Pane>
               <Tab.Pane eventKey="adolescents">
-                <Adolescents/>
+                <Adolescents onPointsEarned={handlePointsEarned}/>
               </Tab.Pane>
             </Tab.Content>
           </Tab.Container>

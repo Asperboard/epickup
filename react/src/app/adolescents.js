@@ -2,12 +2,26 @@ import './globals.css';
 import React, { useState } from 'react';
 import { Modal, Button, Container, Card } from 'react-bootstrap';
 
-const GameContainer = () => {
+const GameContainer = ({ onPointsEarned }) => {
     const [showModal, setShowModal] = useState(false);
     const [currentGame, setCurrentGame] = useState(null);
     const [currentStep, setCurrentStep] = useState('A');
     const [gameHistory, setGameHistory] = useState([]);
-  
+
+    const earnPoints = (amount) => {
+      onPointsEarned(amount);
+    };
+
+    const endingPoints = {
+      'MORT': 0,
+      'MORT': 0,
+      'MORT_POLICE': 0,
+      'FIN_NEGATIVE': 1,
+      'FIN_MOYENNE': 5,
+      'BONNE_FIN': 10,
+      'BONNE_FIN_2': 10
+    };
+
     const textAdventureGame = {
       id: 'doctor-appointment',
       title: 'En retard au rendez-vous',
@@ -52,27 +66,31 @@ const GameContainer = () => {
           text: "Vous continuez à chercher seul et vous perdez complètement. Vous ratez votre rendez-vous et devrez attendre des semaines pour un nouveau créneau. GAME OVER.",
           choices: [
             { text: "Recommencer", next: 'A' }
-          ]
+          ],
+          isEnding: true
         },
         'MORT_POLICE': {
           text: "Vous êtes arrêté par la police pour agression. Vous ratez votre rendez-vous et aurez d'autres problèmes à gérer. GAME OVER.",
           choices: [
             { text: "Recommencer", next: 'A' }
-          ]
+          ],
+          isEnding: true
         },
         'BONNE_FIN': {
           text: "Grâce à votre politesse et aux indications du passant, vous arrivez à temps à votre rendez-vous. Le médecin vous reçoit avec un sourire. FÉLICITATIONS !",
           choices: [
             { text: "Recommencer", next: 'A' },
             { text: "Quitter le jeu", next: 'QUIT' }
-          ]
+          ],
+          isEnding: true
         },
         'FIN_MOYENNE': {
           text: "Vous suivez les indications malgré vos doutes. Heureusement, le passant vous a bien indiqué le chemin - il n'avait aucune raison de vous mentir. Vous arrivez juste à temps pour votre rendez-vous, mais un peu stressé.",
           choices: [
             { text: "Recommencer", next: 'A' },
             { text: "Quitter le jeu", next: 'QUIT' }
-          ]
+          ],
+          isEnding: true
         }
       }
     };
@@ -121,41 +139,47 @@ const GameContainer = () => {
           text: "Lucas devient plus agressif, la situation dégénère et un surveillant intervient trop tard. La confrontation directe a empiré la situation et les conséquences sont importantes.",
           choices: [
             { text: "Recommencer", next: 'A' }
-          ]
+          ],
+          isEnding: true
         },
         'MORT_2': {
           text: "À force d'éviter le problème, Maxime accumule du stress, s'isole davantage et son anxiété grandit. Un jour, il explose et la situation devient ingérable. GAME OVER.",
           choices: [
             { text: "Recommencer", next: 'A' }
-          ]
+          ],
+          isEnding: true
         },
         'FIN_NEGATIVE': {
           text: "Maxime s'énerve, pousse Lucas, et un surveillant intervient. Les deux élèves sont sanctionnés et la tension ne fait qu'augmenter. Maxime se retrouve dans une situation encore plus difficile.",
           choices: [
             { text: "Recommencer", next: 'A' },
             { text: "Quitter le jeu", next: 'QUIT' }
-          ]
+          ],
+          isEnding: true
         },
         'BONNE_FIN': {
           text: "Lucas voit que Maxime ne réagit pas à la provocation et se désintéresse. Il cherchait une réaction émotionnelle et, ne l'obtenant pas, il finit par partir. Maxime peut continuer sa journée tranquillement.",
           choices: [
             { text: "Recommencer", next: 'A' },
             { text: "Quitter le jeu", next: 'QUIT' }
-          ]
+          ],
+          isEnding: true
         },
         'BONNE_FIN_2': {
           text: "Lucas est déstabilisé par la réponse calme et mature de Maxime. Il ne s'attendait pas à cette réaction et, après un moment d'hésitation, il part. Maxime a réussi à désamorcer la situation sans conflit.",
           choices: [
             { text: "Recommencer", next: 'A' },
             { text: "Quitter le jeu", next: 'QUIT' }
-          ]
+          ],
+          isEnding: true
         },
         'FIN_MOYENNE': {
           text: "Maxime reste calme et rationnel, il sait que Lucas ne cherche qu'une réaction. Lucas continue à provoquer parfois, mais l'impact sur Maxime diminue avec le temps. Maxime apprend progressivement à gérer ces situations difficiles.",
           choices: [
             { text: "Recommencer", next: 'A' },
             { text: "Quitter le jeu", next: 'QUIT' }
-          ]
+          ],
+          isEnding: true
         }
       }
     };
@@ -185,7 +209,7 @@ const GameContainer = () => {
       setGameHistory([]);
       setShowModal(true);
     };
-  
+
     const handleChoice = (choice) => {
       setGameHistory([...gameHistory, { step: currentStep, choice }]);
 
@@ -195,9 +219,16 @@ const GameContainer = () => {
         return;
       }
 
+      const nextStep = currentGame.gameData.steps[choice.next];
+      if (nextStep && nextStep.isEnding) {
+        // console.log(endingPoints[choice.next])
+        const points = endingPoints[choice.next] || 0;
+        earnPoints(points);
+      }
+
       setCurrentStep(choice.next);
     };
-  
+
     return (
       <Container className="my-4">
         <h2 className="mb-4">Bibliothèque de Jeux</h2>
@@ -270,5 +301,5 @@ const GameContainer = () => {
       </Container>
     );
 };
-  
+
 export default GameContainer;
