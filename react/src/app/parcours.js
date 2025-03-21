@@ -9,7 +9,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 
-const DynamicTreeGraph = () => {
+const Parcours = () => {
     const svgRef = useRef(null);
 
     // Initial game data
@@ -312,4 +312,4 @@ const DynamicTreeGraph = () => {
     );
 };
 
-export default DynamicTreeGraph;
+export default Parcours;
