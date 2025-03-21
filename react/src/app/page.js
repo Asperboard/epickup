@@ -5,6 +5,7 @@ import { Tab, Container, Nav } from 'react-bootstrap';
 
 import Home from './home'
 import Adolescents from './adolescents'
+import Shop from './shop'
 
 export default function Main() {
   const [points, setPoints] = useState(0);
@@ -33,6 +34,9 @@ export default function Main() {
               <Nav.Item>
                 <Nav.Link eventKey="adolescents" className="text-blue-700 hover:text-blue-900">adolescents</Nav.Link>
               </Nav.Item>
+              <Nav.Item>
+                <Nav.Link eventKey="shop" className="text-blue-700 hover:text-blue-900">shop</Nav.Link>
+              </Nav.Item>
               {/* <Nav.Item>
                 <Nav.Link eventKey="parents" className="text-blue-700 hover:text-blue-900">parents</Nav.Link>
               </Nav.Item>
@@ -49,6 +53,10 @@ export default function Main() {
               </Tab.Pane>
               <Tab.Pane eventKey="adolescents">
                 <Adolescents onPointsEarned={handlePointsEarned}/>
+              </Tab.Pane>
+              <Tab.Pane eventKey="shop">
+                {/* Envelopper Avatar avec DndProvider */}
+                  <Shop />
               </Tab.Pane>
             </Tab.Content>
           </Tab.Container>
