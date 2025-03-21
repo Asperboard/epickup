@@ -14,26 +14,23 @@ export default function Home() {
               </div>
 
               <div className="bg-blue-100 p-6 rounded-lg shadow-md">
-                <h2 className="text-xl font-semibold text-blue-800 mb-4">The offering</h2>
+                <h2 className="text-xl font-semibold text-blue-800 mb-4">L'offre</h2>
                 <p className="text-gray-700">
-                  The unwritten rulebook
+                  Le livre des règles non écrites
                 </p>
               </div>
             </div>
 
             <div className="bg-blue-100 p-6 rounded-lg shadow-md">
               <p className="text-gray-700">
-                Social ability. Often misunderstood and difficulty integrating... General text explaining about the website and contents. General text explaining about the website and contents. General text explaining about the website and contents.
+                Capacité sociale. Souvent mal comprise et difficulté d'intégration... Texte général expliquant le site web et son contenu.
               </p>
               <p className="text-gray-700 mt-4">
-                General text explaining about the website and contents. General text explaining about the website and contents. General text explaining about the website and contents.
-              </p>
-              <p className="text-gray-700 mt-4">
-                General text section about aspies and the rules not knowing them and how it causes problems for them, you have the diagnosis where do you go from here...
+                Texte général sur les Aspies et les règles qu'ils ne connaissent pas, et comment cela leur pose des problèmes. Vous avez le diagnostic, où aller à partir d'ici...
               </p>
               <div className="mt-6 p-4 bg-blue-200 rounded-md">
                 <p className="text-blue-800">
-                  explains what the website is and that you can try it for free for 14 days, no credit card details required and then subscription based which can be stopped at any time
+                  Explique ce qu'est le site web et que vous pouvez l'essayer gratuitement pendant 14 jours, sans avoir à fournir de détails de carte bancaire, puis avec un abonnement pouvant être arrêté à tout moment.
                 </p>
               </div>
             </div>
