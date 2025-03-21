@@ -7,11 +7,17 @@ import Home from './home'
 import Adolescents from './adolescents'
 import Shop from './shop'
 
+import MyStar from '../../assets/img/star/star-solid.svg';
+
 export default function Main() {
   const [points, setPoints] = useState(0);
 
   const handlePointsEarned = (amount) => {
-    setPoints(points + amount);
+    setPoints((prevPoints) => prevPoints + amount);
+  };
+
+  const handlePointsSpent = (amount) => {
+    setPoints((prevPoints) => prevPoints - amount);
   };
 
   return (
@@ -25,6 +31,7 @@ export default function Main() {
               <span className="text-sm italic text-blue-600">Navigating in a neuro-typical maze</span>
             </div>
             <div>{points}</div>
+            <img src={MyStar} alt="MyStar"/>
           </div>
           <Tab.Container id="left-tabs-example" defaultActiveKey="home">
             <Nav variant="pills">
@@ -55,8 +62,7 @@ export default function Main() {
                 <Adolescents onPointsEarned={handlePointsEarned}/>
               </Tab.Pane>
               <Tab.Pane eventKey="shop">
-                {/* Envelopper Avatar avec DndProvider */}
-                  <Shop />
+                <Shop coins={points} onPointsSpent={handlePointsSpent} />
               </Tab.Pane>
             </Tab.Content>
           </Tab.Container>

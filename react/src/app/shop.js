@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Shop = () => {
+const Shop = ({ coins, onPointsSpent }) => {
   const [inventory, setInventory] = useState([
     { id: 1, name: 'Skin A', type: 'skin', image: '/skinA.png' },
     { id: 2, name: 'Tree', type: 'background', image: '/tree.png' },
@@ -9,7 +9,6 @@ const Shop = () => {
   ]);
 
   const [avatarItems, setAvatarItems] = useState([]);
-  const [coins, setCoins] = useState(1000);
   const [draggedItem, setDraggedItem] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -19,6 +18,10 @@ const Shop = () => {
     { id: 7, name: 'Greek Hat', type: 'hat', price: 1000, image: '/hat4.png' },
     { id: 8, name: 'Santa Hat', type: 'hat', price: 400, image: '/hat3.png' },
   ]);
+
+  const spendCoins = (amount) => {
+    onPointsSpent(amount)
+  }
 
   const handleMouseMove = (e) => {
     if (isDragging) {
@@ -68,7 +71,7 @@ const Shop = () => {
     if (coins >= item.price) {
       const newItem = { ...item, id: generateUniqueId() };
       setInventory([...inventory, newItem]);
-      setCoins(coins - item.price);
+      spendCoins(item.price);
       setShopItems(shopItems.filter(i => i.id !== item.id));
     } else {
       alert('Not enough coins!');

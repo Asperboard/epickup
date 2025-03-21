@@ -2,7 +2,7 @@ import './globals.css';
 import React, { useState } from 'react';
 import { Modal, Button, Container, Card } from 'react-bootstrap';
 
-const GameContainer = ({ onPointsEarned }) => {
+const Adolescents = ({ onPointsEarned }) => {
     const [showModal, setShowModal] = useState(false);
     const [currentGame, setCurrentGame] = useState(null);
     const [currentStep, setCurrentStep] = useState('A');
@@ -16,10 +16,10 @@ const GameContainer = ({ onPointsEarned }) => {
       'MORT': 0,
       'MORT': 0,
       'MORT_POLICE': 0,
-      'FIN_NEGATIVE': 1,
-      'FIN_MOYENNE': 5,
-      'BONNE_FIN': 10,
-      'BONNE_FIN_2': 10
+      'FIN_NEGATIVE': 10,
+      'FIN_MOYENNE': 50,
+      'BONNE_FIN': 100,
+      'BONNE_FIN_2': 100
     };
 
     const textAdventureGame = {
@@ -302,4 +302,4 @@ const GameContainer = ({ onPointsEarned }) => {
     );
 };
 
-export default GameContainer;
+export default Adolescents;
